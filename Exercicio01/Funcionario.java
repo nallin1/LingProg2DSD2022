@@ -10,6 +10,12 @@ public class Funcionario {
             sobrenome = "";
             salarioMens = 0;
         }
+
+        public Funcionario(String nome, String sobrenome, double salarioMens) {
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.salarioMens = salarioMens;
+        }
     
         public String getNome() {
             return this.nome;
@@ -34,4 +40,8 @@ public class Funcionario {
         public void setSalarioMens(double salarioMens) {
             this.salarioMens = salarioMens;
         }
+
+    public double salarioAnual() {
+        return salarioMens*12;
+    }
 }
