@@ -5,5 +5,10 @@ public class Exercicio01 {
         Funcionario func1 = new Funcionario("Joao", "Da Silva", 1500.5);
         System.out.println("O salario do funcionário é: " + func1.getSalarioMens());
         System.out.println("O salario anual do funcionário é: " + func1.salarioAnual());
+
+        Funcionario func2 = new Funcionario("Aline", "Soares", 2500);
+        System.out.println("O salario anual do funcionário é: " + func2.salarioAnual());
+        
+        func1.setSalarioMens();
     }
 }
