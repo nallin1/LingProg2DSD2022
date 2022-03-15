@@ -12,8 +12,14 @@ public class Estoque {
 
     public Estoque(String nome, int qtdAtual, int qtdMinima) {
         this.nome = nome;
-        this.qtdAtual = qtdAtual;
-        this.qtdMinima = qtdMinima;
+        if (qtdAtual >= 0)
+            this.qtdAtual = qtdAtual;
+        else
+            this.qtdAtual = 0;
+        if (qtdMinima >= 0)
+            this.qtdMinima = qtdMinima;
+        else
+            this.qtdMinima = 0;
     }
 
     public String getNome() {
@@ -52,4 +58,15 @@ public class Estoque {
         return qtdAtual;
     }
 
+    public String mostra() {
+        return nome + qtdMinima + qtdAtual;
+    }
+
+    public boolean precisaRepor() {
+        if (qtdAtual >= qtdMinima) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
