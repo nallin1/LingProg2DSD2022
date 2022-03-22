@@ -10,7 +10,7 @@ public class App {
 
         if (myString.equalsIgnoreCase(myString2) == true)
             System.out.println("As duas strings são iguais");
-
+        
         else 
         {
             System.out.println("As duas strings são diferentes");
