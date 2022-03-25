@@ -1,3 +1,4 @@
+/*
 public class App {
     public static void main(String[] args) {
         double n1 = Math.cos(60);
@@ -5,3 +6,4 @@ public class App {
         System.out.println(x);
     }
 }
+*/
