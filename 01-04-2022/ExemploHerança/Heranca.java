@@ -1,7 +1,7 @@
 /**
  * App
  */
-public class App {
+public class Heranca {
     public static void main(String[] args) {
         Pessoa p1 = new Pessoa("Tania", 25);
         // p1.setNome("Tania");
