@@ -13,7 +13,7 @@ public class AppContas {
         public static void main(String[] args) {
             ContaBancaria contaBancaria1 = new ContaBancaria();
             ContaPoupanca contaPoupanca1 = new ContaPoupanca();
-            ContaEspecial contaEspecial1 = new ContaEspecial();
+            // ContaEspecial contaEspecial1 = new ContaEspecial();
             
             contaBancaria1.setSaldo(1000);
             contaBancaria1.setNumConta(213);
@@ -23,7 +23,7 @@ public class AppContas {
             contaPoupanca1.setNumConta(456);
             contaPoupanca1.setSaldo(1200);
             
-            contaPoupanca1.
+            // contaPoupanca1.
             
             
     }
