@@ -3,4 +3,8 @@ public class Preguica extends Animal {
     public void emitirSom(){
         System.out.println("ahuuu ahuu...");
     }
+
+    public void subirEmArvores() {
+        
+    }
 }
