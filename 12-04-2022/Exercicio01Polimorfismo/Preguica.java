@@ -5,6 +5,6 @@ public class Preguica extends Animal {
     }
 
     public void subirEmArvores() {
-        
+        System.out.println("Subindo em árvores !!");
     }
 }

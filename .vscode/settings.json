@@ -1,14 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "25-03-2022/ExLingProg01",
-        "22-03-2022/MathJavaLib",
-        "22-03-2022/ExLingProg04",
-        "22-03-2022/ExLingProg03",
-        "22-03-2022/ExLingProg02",
-        "22-03-2022/ExLingProg01",
-        "15-03-2022",
-        "01-04-2022/ExemploSobrescrita",
-        "01-04-2022/ExemploHerança",
-        "05-04-2022"
-    ]
+        "12-04-2022/Exercicio01Polimorfismo"
+    ],
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m"
 }
