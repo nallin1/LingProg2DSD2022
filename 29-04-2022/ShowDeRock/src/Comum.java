@@ -4,6 +4,8 @@ public class Comum extends Ingresso {
     }
 
     public Comum() {
+<<<<<<< HEAD
         super();
+
     }
 }
