@@ -7,5 +7,18 @@
 - [x] Exibir lista clientes
 - [x] Classe Funcionário
 - [x] Cadastrar funcionário
-- [x] Excluir Cliente
+- [ ] Excluir Cliente
 - [x] Exibir lista funcionarios
+- [ ] Classe Produto
+- [ ] Cadastrar produto
+- [ ] Exibir Produtos
+- [ ] Excluir produtos
+- [ ] Busca por nome de clientes
+- [ ] Busca por nome e atributos de produtos
+- [ ] Exibir clientes mais velhos
+- [ ] Exibir clientes menores de 18
+- [ ] Exibir idade média dos clientes
+- [ ] Exibir produto mais caro
+- [ ] Exibir produto mais barato
+- [ ] Exibir média do preço dos produtos
+- [ ] Exibir produtos acima da média de preço
