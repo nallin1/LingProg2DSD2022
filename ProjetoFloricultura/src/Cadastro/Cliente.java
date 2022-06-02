@@ -7,10 +7,16 @@ public class Cliente extends Pessoa implements IPessoa {
 	private String florFavorita;
 	private String email;
 	
+	
+	
+	public Cliente() {
+		this.idade = 0;
+	}
+
 	@Override
 	public void exibir() {
-		System.out.println("Nome: " + this.nome + "\nIdade: " + this.idade + "\nTelefone" + this.telefone
-				+ "\nFlor favorita: " + this.florFavorita + "\nEmail: " + this.email);
+		System.out.println("\nNome: " + this.nome + "\nIdade: " + this.idade + "\nTelefone" + this.telefone
+				+ "\nFlor favorita: " + this.florFavorita + "\nEmail: " + this.email + "\n");
 	}
 
 	public String getNome() {
@@ -26,7 +32,11 @@ public class Cliente extends Pessoa implements IPessoa {
 	}
 
 	public void setIdade(int idade) {
-		this.idade = idade;
+		if (idade < 1) {
+			throw new IllegalArgumentException("Idade inválida...");
+		} else {
+			this.idade = idade;
+		}
 	}
 
 	public int getTelefone() {
