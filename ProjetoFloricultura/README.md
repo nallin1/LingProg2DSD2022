@@ -9,9 +9,9 @@
 - [x] Cadastrar funcionário
 - [ ] Excluir Cliente
 - [x] Exibir lista funcionarios
-- [ ] Classe Produto
-- [ ] Cadastrar produto
-- [ ] Exibir Produtos
+- [x] Classe Produto
+- [x] Cadastrar produto
+- [x] Exibir Produtos
 - [ ] Excluir produtos
 - [ ] Busca por nome de clientes
 - [ ] Busca por nome e atributos de produtos
@@ -22,3 +22,5 @@
 - [ ] Exibir produto mais barato
 - [ ] Exibir média do preço dos produtos
 - [ ] Exibir produtos acima da média de preço
+
+- [] Arrumar 
