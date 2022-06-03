@@ -14,7 +14,7 @@ public class Produto {
 	}
 	
 	public void exibir() {
-		System.out.println("Descrição: " + this.descricao + "\nPreco: " + this.preco + "\nPeso: " + this.peso 
+		System.out.println("Descricao: " + this.descricao + "\nPreco: " + this.preco + "\nPeso: " + this.peso 
 				+ "\nEspecie: " + this.especie + "\nAltura: " + this.altura);
 	}
 	
