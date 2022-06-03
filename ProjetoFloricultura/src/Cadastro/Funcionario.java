@@ -31,7 +31,7 @@ public class Funcionario extends Pessoa implements IPessoa {
 	}
 
 	public void setIdade(int idade) {
-		if (idade < 1) {
+		if (idade < 0) {
 			throw new IllegalArgumentException("Valor inválido...");
 		} else {
 			this.idade = idade;

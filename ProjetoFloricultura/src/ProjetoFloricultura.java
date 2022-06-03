@@ -11,37 +11,6 @@ public class ProjetoFloricultura {
 
 	private static Scanner scanUsuario = new Scanner(System.in);
 
-	public static Cliente criarCliente() {
-		// cria cliente
-		Cliente novoCliente = new Cliente();
-
-		System.out.println("Digite o nome do Cliente: ");
-		novoCliente.setNome(scanUsuario.next());
-		scanUsuario.nextLine();
-
-		while (novoCliente.getIdade() < 1) {
-			try {
-				System.out.println("Digite a idade do cliente: ");
-				novoCliente.setIdade(scanUsuario.nextInt());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Idade de cliente invÃ¡lida...");
-			}
-		}
-
-		System.out.print("Digite o telefone do Cliente: \n");
-		novoCliente.setTelefone(scanUsuario.nextInt());
-
-		System.out.print("Digite a flor favorita do Cliente: \n");
-		novoCliente.setFlorFavorita(scanUsuario.next());
-		scanUsuario.nextLine();
-
-		System.out.println("Digite o email do Cliente: ");
-		novoCliente.setEmail(scanUsuario.next());
-
-		// retorna array
-		return novoCliente;
-	}
-
 	public static void interfaceUsuario() {
 		int opcaoUsuario = 1;
 
@@ -133,6 +102,50 @@ public class ProjetoFloricultura {
 				System.out.println("Opcao invalida...");
 			}
 		}
+	}
+	
+	public static Cliente criarCliente() {
+		// cria cliente
+		Cliente novoCliente = new Cliente();
+
+		System.out.println("Digite o nome do Cliente: ");
+		novoCliente.setNome(scanUsuario.next());
+		scanUsuario.nextLine();
+
+		while (novoCliente.getIdade() < 1) {
+			try {
+				System.out.println("Digite a idade do cliente: ");
+				novoCliente.setIdade(scanUsuario.nextInt());
+			} catch (IllegalArgumentException e) {
+				System.out.println("Idade de cliente invÃ¡lida...");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de idade invalida...");
+				scanUsuario.nextLine();
+			}
+		}
+		
+		while (novoCliente.getTelefone() < 0) {
+			try {
+				System.out.print("Digite o telefone do Cliente: \n");
+				novoCliente.setTelefone(scanUsuario.nextInt());
+			} catch (IllegalArgumentException e) {
+				System.out.println("Valor de telefone invalido... ");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de telefone invalido... ");
+				scanUsuario.nextLine();
+			}
+		}
+		
+
+		System.out.print("Digite a flor favorita do Cliente: \n");
+		novoCliente.setFlorFavorita(scanUsuario.next());
+		scanUsuario.nextLine();
+
+		System.out.println("Digite o email do Cliente: ");
+		novoCliente.setEmail(scanUsuario.next());
+
+		// retorna array
+		return novoCliente;
 	}
 
 	private static int retornaMediaIdade() {
@@ -304,6 +317,7 @@ public class ProjetoFloricultura {
 		scanUsuario.nextLine();
 
 		while (novoProduto.getPreco() < 1) {
+			
 			try {
 				System.out.println("Digite o preco da planta: ");
 				novoProduto.setPreco(scanUsuario.nextDouble());
@@ -311,6 +325,7 @@ public class ProjetoFloricultura {
 				System.out.println("Preco invalido... ");
 			} catch (InputMismatchException e) {
 				System.out.println("Tipo de preço inválido... ");
+				scanUsuario.nextLine();
 			}
 		}
 
@@ -320,6 +335,9 @@ public class ProjetoFloricultura {
 				novoProduto.setPeso(scanUsuario.nextDouble());
 			} catch (IllegalArgumentException e) {
 				System.out.println("Preco invalido... ");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de preco invalido...");
+				scanUsuario.nextLine();
 			}
 		}
 
@@ -329,6 +347,9 @@ public class ProjetoFloricultura {
 				novoProduto.setAltura(scanUsuario.nextDouble());
 			} catch (IllegalArgumentException e) {
 				System.out.println("Altura invalida... ");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de altura invalida... ");
+				scanUsuario.nextLine();
 			}
 		}
 
@@ -361,6 +382,10 @@ public class ProjetoFloricultura {
 				novoFuncionario.setIdade(scanUsuario.nextInt());
 			} catch (IllegalArgumentException e) {
 				System.out.println("Idade InvÃ¡lida...");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de idade inválida... ");
+				scanUsuario.nextLine();
+				novoFuncionario.setIdade(0);
 			}
 		}
 

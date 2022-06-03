@@ -11,6 +11,7 @@ public class Cliente extends Pessoa implements IPessoa {
 	
 	public Cliente() {
 		this.idade = 0;
+		this.telefone = -1;
 	}
 
 	@Override
@@ -44,7 +45,11 @@ public class Cliente extends Pessoa implements IPessoa {
 	}
 
 	public void setTelefone(int telefone) {
-		this.telefone = telefone;
+		if (telefone < 0) {
+			throw new IllegalArgumentException("Valor de telefone invalido...");
+		} else {
+			this.telefone = telefone;
+		}
 	}
 
 	public String getFlorFavorita() {
