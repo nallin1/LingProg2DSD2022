@@ -7,20 +7,18 @@
 - [x] Exibir lista clientes
 - [x] Classe Funcionário
 - [x] Cadastrar funcionário
-- [ ] Excluir Cliente
+- [x] Excluir Cliente
 - [x] Exibir lista funcionarios
 - [x] Classe Produto
 - [x] Cadastrar produto
 - [x] Exibir Produtos
-- [ ] Excluir produtos
-- [ ] Busca por nome de clientes
-- [ ] Busca por nome e atributos de produtos
-- [ ] Exibir clientes mais velhos
-- [ ] Exibir clientes menores de 18
-- [ ] Exibir idade média dos clientes
-- [ ] Exibir produto mais caro
-- [ ] Exibir produto mais barato
-- [ ] Exibir média do preço dos produtos
-- [ ] Exibir produtos acima da média de preço
-
-- [] Arrumar 
+- [x] Excluir produtos
+- [x] Busca por nome de clientes
+- [x] Busca por nome e atributos de produtos
+- [x] Exibir clientes mais velhos
+- [x] Exibir clientes menores de 18
+- [x] Exibir idade média dos clientes
+- [x] Exibir produto mais caro
+- [x] Exibir produto mais barato
+- [x] Exibir média do preço dos produtos
+- [x] Exibir produtos acima da média de preço
