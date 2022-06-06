@@ -1,6 +1,6 @@
 # 🌺 Projeto Floricultura
 
-- [ ] Interface
+- [x] Interface
 - [x] Classe Cliente
 - [x] Cadastrar cliente
 - [x] Excluir cliente
