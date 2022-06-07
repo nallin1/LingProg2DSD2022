@@ -9,7 +9,7 @@ public class Produto {
 
 	public Produto() {
 		this.preco = 0;
-		this.peso = 1;
+		this.peso = -1;
 		this.altura = 0;
 	}
 	
@@ -43,7 +43,7 @@ public class Produto {
 	}
 
 	public void setPeso(double peso) {
-		if (peso < 1) {
+		if (peso < 0) {
 			throw new IllegalArgumentException("peso invalido...");
 		} else {
 			this.peso = peso;
@@ -63,7 +63,7 @@ public class Produto {
 	}
 
 	public void setAltura(double altura) {
-		if (altura < 0) {
+		if (altura < 1) {
 			throw new IllegalArgumentException("altura invalida...\n");
 		} else {
 			this.altura = altura;
