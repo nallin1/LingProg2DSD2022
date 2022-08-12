@@ -3,6 +3,7 @@ package view;
 import controller.AlunoController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Aluno;
 
 /*
@@ -40,6 +41,9 @@ public class FrmAluno extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAlunos = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,26 +73,50 @@ public class FrmAluno extends javax.swing.JFrame {
             }
         });
 
+        tblAlunos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tblAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "RA", "Nome"
+            }
+        ));
+        tblAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAlunosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAlunos);
+
+        txtBuscar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCadastrar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(txtRA))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblRA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                    .addComponent(txtRA)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCadastrar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +132,11 @@ public class FrmAluno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
-                    .addComponent(btnBuscar))
-                .addContainerGap(162, Short.MAX_VALUE))
+                    .addComponent(btnBuscar)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,16 +148,39 @@ public class FrmAluno extends javax.swing.JFrame {
         int raAluno = Integer.parseInt(this.txtRA.getText());
         
         controller.cadastrarAluno(raAluno, nomeAluno);
+        
+        this.btnBuscarActionPerformed(evt);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Aluno> listaAluno = controller.buscarTodosAlunos();
+        DefaultTableModel dados = new DefaultTableModel();
+        
+        dados.setNumRows(0);
+        dados.addColumn("RA");
+        dados.addColumn("Nome");
+        
+        // percorre o array list adicionando objetos a tabela
+        for (Aluno a1: listaAluno) {
+            dados.addRow(new Object[]{a1.getNome(), a1.getRa()});
+        }
+        
+        tblAlunos.setModel(dados);
+        /*
         String result = "";
         for (Aluno al: listaAluno) {
             result = result.concat(al.getNome() + " " + al.getRa() + "\n");
         }
         JOptionPane.showMessageDialog(null, result);
+        */
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAlunosMouseClicked
+        int linhaSelecionada = this.tblAlunos.getSelectedRow();
+        String raSelecionado = this.tblAlunos.getValueAt(linhaSelecionada, 0).toString();
+        
+        this.txtBuscar.setText(raSelecionado);
+    }//GEN-LAST:event_tblAlunosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -166,8 +220,11 @@ public class FrmAluno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label lblNome;
     private java.awt.Label lblRA;
+    private javax.swing.JTable tblAlunos;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRA;
     // End of variables declaration//GEN-END:variables
