@@ -153,6 +153,7 @@ public class FrmAluno extends javax.swing.JFrame {
         this.btnBuscarActionPerformed(evt);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Aluno> listaAluno = controller.buscarTodosAlunos();
         DefaultTableModel dados = new DefaultTableModel();
