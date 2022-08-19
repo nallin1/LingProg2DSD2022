@@ -1,7 +1,9 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Aluno;
+import model.DAO.AlunoDAO;
 
 /**
  *
@@ -15,9 +17,11 @@ public class AlunoController {
         listaAluno = new ArrayList<>();
     }
 
-    public void cadastrarAluno(int ra, String nome) {
-        Aluno al = new Aluno(ra, nome);
-        listaAluno.add(al);
+    public void cadastrarAluno(int ra, String nome) throws SQLException {
+        Aluno a = new Aluno(ra, nome);
+        //listaAluno.add(al);
+        AlunoDAO aldao = new AlunoDAO();
+        aldao.inserirAluno(a);
     }
 
     public ArrayList<Aluno> buscarTodosAlunos() {
