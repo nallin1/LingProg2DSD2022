@@ -27,6 +27,11 @@ public class AlunoController {
     public ArrayList<Aluno> buscarTodosAlunos() {
         return listaAluno;
     }
+    
+    public void excluirAluno(int ra) throws SQLException {
+        AlunoDAO alDao = new  AlunoDAO();
+        alDao.excluir(ra);
+    }
     /*
     public Aluno buscarAluno(int ra) {
         return aluno;

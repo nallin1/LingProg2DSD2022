@@ -22,12 +22,22 @@ public class AlunoDAO {
     public void inserirAluno(Aluno al) throws SQLException
     { 
             con = new Conexao().getConnection();
-            String sql = "Insert into ALUNOJAVA (RA,NOME) values (?,?)";
+            String sql = "Insert into AlunoJava (RA,NOME) values (?,?)";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, al.getRa());
             stmt.setString(2, al.getNome());
             stmt.execute();
         }
             con.close();    
+    }
+    
+    public void excluir(int ra) throws SQLException {
+        con = new Conexao().getConnection();
+        String sql = "DELETE FROM AlunoJava WHERE RA = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, ra);
+            stmt.execute();
+        }
+        con.close();
     }
 }

@@ -1,7 +1,10 @@
 package view;
 
 import controller.AlunoController;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;
@@ -44,6 +47,8 @@ public class FrmAluno extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAlunos = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
+        lblExcluir = new javax.swing.JTextField();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +96,16 @@ public class FrmAluno extends javax.swing.JFrame {
 
         txtBuscar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
+        lblExcluir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,12 +124,16 @@ public class FrmAluno extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                                     .addComponent(txtRA)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCadastrar)))
+                                .addComponent(btnCadastrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -135,9 +154,13 @@ public class FrmAluno extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCadastrar)
                         .addComponent(btnBuscar)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblExcluir)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -148,7 +171,11 @@ public class FrmAluno extends javax.swing.JFrame {
         String nomeAluno = this.txtNome.getText();
         int raAluno = Integer.parseInt(this.txtRA.getText());
         
-        controller.cadastrarAluno(raAluno, nomeAluno);
+        try {
+            controller.cadastrarAluno(raAluno, nomeAluno);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         this.btnBuscarActionPerformed(evt);
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -183,6 +210,15 @@ public class FrmAluno extends javax.swing.JFrame {
         
         this.txtBuscar.setText(raSelecionado);
     }//GEN-LAST:event_tblAlunosMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int raExcluir = Integer.parseInt(lblExcluir.getText());
+        try {
+            controller.excluirAluno(raExcluir);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +258,9 @@ public class FrmAluno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField lblExcluir;
     private java.awt.Label lblNome;
     private java.awt.Label lblRA;
     private javax.swing.JTable tblAlunos;
