@@ -21,7 +21,7 @@ public class FlorDAO {
 
     public void inserirFlor(Flor f) throws SQLException {
         con = new Conexao().getConnection();
-        String sql = "INSERT INTO floricultura (ESPECIE, PRECO, ALTURA) values (?,?,?)";
+        String sql = "insert into floricultura (especie, preco, altura) values (?,?,?)";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, f.getEspecie());
             stmt.setDouble(2, f.getPreco());
@@ -34,7 +34,7 @@ public class FlorDAO {
     
     public void ExcluirFlor(String especieFlor) throws SQLException {
         con = new Conexao().getConnection();
-        String sql = "DELETE FROM Floricultura WHERE Especie = ?";
+        String sql = "DELETE FROM floricultura WHERE Especie = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, especieFlor);
             stmt.execute();

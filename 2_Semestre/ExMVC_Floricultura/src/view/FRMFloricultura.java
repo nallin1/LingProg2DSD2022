@@ -20,6 +20,7 @@ public class FRMFloricultura extends javax.swing.JFrame {
      * Creates new form FRMFloricultura
      */
     public FRMFloricultura() {
+        controller = new FlorController();
         initComponents();
     }
 
@@ -40,8 +41,8 @@ public class FRMFloricultura extends javax.swing.JFrame {
         lblPreco = new javax.swing.JTextField();
         lblAltura = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnExcluir = new javax.swing.JButton();
+        lblExcluir = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,11 +72,15 @@ public class FRMFloricultura extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Excluir");
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("Espécie...");
+        lblExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,10 +101,10 @@ public class FRMFloricultura extends javax.swing.JFrame {
                             .addComponent(lblAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
+                        .addComponent(lblExcluir))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -126,8 +131,8 @@ public class FRMFloricultura extends javax.swing.JFrame {
                 .addComponent(btnCadastrar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1))
+                    .addComponent(btnExcluir)
+                    .addComponent(lblExcluir))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -135,16 +140,29 @@ public class FRMFloricultura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String especieFlor = this.lblEspecie.getText();
-        double precoFlor = Double.parseDouble(this.lblPreco.getText());
-        double alturaFlor = Double.parseDouble(this.lblAltura.getText());
-        
         try {
+            String especieFlor = this.lblEspecie.getText();
+            double precoFlor = Double.parseDouble(lblPreco.getText());
+            double alturaFlor = Double.parseDouble(this.lblAltura.getText());
+            
             controller.cadastrarFlorController(especieFlor, precoFlor, alturaFlor);
         } catch (SQLException ex) {
             Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        String florExcluir = this.lblExcluir.getText();
+        
+        try {
+            controller.excluirFlorController(florExcluir);
+        } catch (SQLException ex) {
+            Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,14 +201,14 @@ public class FRMFloricultura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lblAltura;
     private javax.swing.JTextField lblEspecie;
+    private javax.swing.JTextField lblExcluir;
     private javax.swing.JTextField lblPreco;
     // End of variables declaration//GEN-END:variables
 }

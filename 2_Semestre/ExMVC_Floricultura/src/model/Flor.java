@@ -41,7 +41,7 @@ public class Flor {
     public Flor() {
     }
 
-    public Flor(double preco, String especie, double altura) {
+    public Flor(String especie, double preco, double altura) {
         this.preco = preco;
         this.especie = especie;
         this.altura = altura;

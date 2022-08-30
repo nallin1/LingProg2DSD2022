@@ -15,7 +15,7 @@ import model.dao.FlorDAO;
  */
 public class FlorController {
     public void cadastrarFlorController(String especie, double preco, double altura) throws SQLException {
-        Flor f = new Flor(preco, especie, altura);
+        Flor f = new Flor(especie, preco, altura);
         
         FlorDAO fDAO = new FlorDAO();
         fDAO.inserirFlor(f);
