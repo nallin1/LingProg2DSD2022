@@ -43,6 +43,8 @@ public class FRMFloricultura extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         lblExcluir = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblFloricultura = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,24 @@ public class FRMFloricultura extends javax.swing.JFrame {
 
         lblExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        tblFloricultura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Espécie", "Preço", "Altura"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblFloricultura);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +128,11 @@ public class FRMFloricultura extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +157,9 @@ public class FRMFloricultura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(lblExcluir))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -146,10 +172,11 @@ public class FRMFloricultura extends javax.swing.JFrame {
             double alturaFlor = Double.parseDouble(this.lblAltura.getText());
             
             controller.cadastrarFlorController(especieFlor, precoFlor, alturaFlor);
+            controller.buscarFloresController();
         } catch (SQLException ex) {
             Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -206,9 +233,11 @@ public class FRMFloricultura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lblAltura;
     private javax.swing.JTextField lblEspecie;
     private javax.swing.JTextField lblExcluir;
     private javax.swing.JTextField lblPreco;
+    private javax.swing.JTable tblFloricultura;
     // End of variables declaration//GEN-END:variables
 }

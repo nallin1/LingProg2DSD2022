@@ -25,4 +25,9 @@ public class FlorController {
         FlorDAO fDAO = new FlorDAO();
         fDAO.ExcluirFlor(especie);
     }
+    
+    public void buscarFloresController() throws SQLException{
+        FlorDAO fDAO = new FlorDAO();
+        fDAO.buscarFlores();
+    }
 }

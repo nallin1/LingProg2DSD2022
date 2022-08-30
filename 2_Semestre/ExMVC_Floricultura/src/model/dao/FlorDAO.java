@@ -3,7 +3,9 @@ package model.dao;
 import connection.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Flor;
 
 /*
@@ -31,7 +33,7 @@ public class FlorDAO {
         }
         con.close();
     }
-    
+
     public void ExcluirFlor(String especieFlor) throws SQLException {
         con = new Conexao().getConnection();
         String sql = "DELETE FROM floricultura WHERE Especie = ?";
@@ -40,5 +42,28 @@ public class FlorDAO {
             stmt.execute();
         }
         con.close();
+    }
+
+    public ArrayList<Flor> buscarFlores() throws SQLException {
+        ArrayList<Flor> listaFlores = new ArrayList<Flor>();
+        ResultSet rs;
+        con = new Conexao().getConnection();
+
+        String sql = "SELECT * FROM floricultura";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            String especie = rs.getString("especie");
+            double preco = rs.getDouble("preco");
+            double altura = rs.getDouble("altura");
+
+            Flor f = new Flor(especie, preco, altura);
+            listaFlores.add(f);
+        }
+
+        stmt.close();
+        con.close();
+        return listaFlores;
     }
 }
