@@ -7,8 +7,12 @@ package view;
 
 import controller.FlorController;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Flor;
 
 /**
  *
@@ -41,10 +45,13 @@ public class FRMFloricultura extends javax.swing.JFrame {
         lblPreco = new javax.swing.JTextField();
         lblAltura = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        lblExcluir = new javax.swing.JTextField();
+        lblExcluir = new javax.swing.JButton();
+        txtExcluir = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFloricultura = new javax.swing.JTable();
+        btnBuscarTodos = new javax.swing.JButton();
+        btnBuscarEspecie = new javax.swing.JButton();
+        txtBsucarEspecie = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,15 +81,15 @@ public class FRMFloricultura extends javax.swing.JFrame {
             }
         });
 
-        btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        lblExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblExcluir.setText("Excluir");
+        lblExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
+                lblExcluirActionPerformed(evt);
             }
         });
 
-        lblExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         tblFloricultura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,36 +109,63 @@ public class FRMFloricultura extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblFloricultura);
 
+        btnBuscarTodos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnBuscarTodos.setText("BuscarTodos");
+        btnBuscarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarTodosActionPerformed(evt);
+            }
+        });
+
+        btnBuscarEspecie.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnBuscarEspecie.setText("BuscarEspecie");
+        btnBuscarEspecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarEspecieActionPerformed(evt);
+            }
+        });
+
+        txtBsucarEspecie.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEspecie)
-                            .addComponent(lblPreco)
-                            .addComponent(lblAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblExcluir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtExcluir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblEspecie)
+                                            .addComponent(lblPreco)
+                                            .addComponent(lblAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnBuscarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBuscarEspecie)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtBsucarEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -155,11 +189,17 @@ public class FRMFloricultura extends javax.swing.JFrame {
                 .addComponent(btnCadastrar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(lblExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(lblExcluir)
+                    .addComponent(txtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarTodos)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscarEspecie)
+                    .addComponent(txtBsucarEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,23 +213,55 @@ public class FRMFloricultura extends javax.swing.JFrame {
             
             controller.cadastrarFlorController(especieFlor, precoFlor, alturaFlor);
             controller.buscarFloresController();
+            
+            this.btnBuscarTodosActionPerformed(evt);
         } catch (SQLException ex) {
             Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        String florExcluir = this.lblExcluir.getText();
+    private void lblExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblExcluirActionPerformed
+        String florExcluir = this.txtExcluir.getText();
         
         try {
             controller.excluirFlorController(florExcluir);
+            
+            this.btnBuscarTodosActionPerformed(evt);
         } catch (SQLException ex) {
             Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
-    }//GEN-LAST:event_btnExcluirActionPerformed
+    }//GEN-LAST:event_lblExcluirActionPerformed
+
+    private void btnBuscarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTodosActionPerformed
+        ArrayList<Flor> listaFlor;
+        try {
+            listaFlor = controller.buscarFloresController();
+            DefaultTableModel dados = (DefaultTableModel) tblFloricultura.getModel();
+            dados.setNumRows(0);
+            for (Flor f: listaFlor) {
+                dados.addRow(new Object[]{f.getEspecie(), f.getPreco(), f.getAltura()});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar flores...");
+            System.out.println("Erro ao buscar flores" + ex.toString());
+        }
+    }//GEN-LAST:event_btnBuscarTodosActionPerformed
+
+    private void btnBuscarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEspecieActionPerformed
+        String textoFloresEncontradas = "";
+        try {
+            ArrayList<Flor> floresEncontradas = controller.buscarFloresEncontradasController(txtBsucarEspecie.getText());
+            for (Flor f: floresEncontradas) {
+                textoFloresEncontradas = textoFloresEncontradas.concat("Espécie:" + f.getEspecie() + " Preço: " + f.getPreco() + " Altura: " + f.getAltura() + "\n");
+            }
+            JOptionPane.showMessageDialog(null, textoFloresEncontradas);
+        } catch (SQLException ex) {
+            Logger.getLogger(FRMFloricultura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarEspecieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,8 +299,9 @@ public class FRMFloricultura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarEspecie;
+    private javax.swing.JButton btnBuscarTodos;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -236,8 +309,10 @@ public class FRMFloricultura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lblAltura;
     private javax.swing.JTextField lblEspecie;
-    private javax.swing.JTextField lblExcluir;
+    private javax.swing.JButton lblExcluir;
     private javax.swing.JTextField lblPreco;
     private javax.swing.JTable tblFloricultura;
+    private javax.swing.JTextField txtBsucarEspecie;
+    private javax.swing.JTextField txtExcluir;
     // End of variables declaration//GEN-END:variables
 }

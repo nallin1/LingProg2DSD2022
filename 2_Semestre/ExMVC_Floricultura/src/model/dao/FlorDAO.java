@@ -66,4 +66,26 @@ public class FlorDAO {
         con.close();
         return listaFlores;
     }
+    
+    public ArrayList<Flor> buscarFlorEspecie(String nomeFlor) throws SQLException {
+        ResultSet rs;
+        ArrayList<Flor> florBuscaEspecie = new ArrayList<Flor>();
+        
+        con = new Conexao().getConnection();
+        String sql = "SELECT * FROM floricultura WHERE especie LIKE ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, nomeFlor + "%");
+        rs = stmt.executeQuery();
+        while (rs.next()) {
+            String especie = rs.getString("especie");
+            double preco = rs.getDouble("preco");
+            double altura = rs.getDouble("altura");
+            Flor floresEncontradas = new Flor(especie, preco, altura);
+            florBuscaEspecie.add(floresEncontradas);
+        }
+        stmt.close();
+        con.close();
+        return florBuscaEspecie;
+        
+    }
 }

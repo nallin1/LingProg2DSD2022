@@ -6,6 +6,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Flor;
 import model.dao.FlorDAO;
 
@@ -26,8 +27,13 @@ public class FlorController {
         fDAO.ExcluirFlor(especie);
     }
     
-    public void buscarFloresController() throws SQLException{
+    public ArrayList<Flor> buscarFloresController() throws SQLException{
         FlorDAO fDAO = new FlorDAO();
-        fDAO.buscarFlores();
+        return (fDAO.buscarFlores());
+    }
+    
+    public ArrayList<Flor> buscarFloresEncontradasController(String nomeFlor) throws SQLException {
+        FlorDAO fDAO = new FlorDAO();
+        return (fDAO.buscarFlorEspecie(nomeFlor));
     }
 }
