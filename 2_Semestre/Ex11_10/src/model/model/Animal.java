@@ -7,6 +7,16 @@ public class Animal {
     private String raca;
     private float peso;
 
+
+    public Animal(String nome, String nomeDono, int idade, String raca, float peso) {
+        this.nome = nome;
+        this.nomeDono = nomeDono;
+        this.idade = idade;
+        this.raca = raca;
+        this.peso = peso;
+    }
+
+
     public static String checkString(String message) {
         if (message.isEmpty())
             throw new IllegalArgumentException("O argumento não pode ser vazio...");
