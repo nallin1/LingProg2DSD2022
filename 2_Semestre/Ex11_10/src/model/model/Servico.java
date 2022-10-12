@@ -6,6 +6,14 @@ public class Servico {
     private float duracao;
     private String profissional;
 
+
+    public Servico(String nome, String descricao, float duracao, String profissional) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.duracao = duracao;
+        this.profissional = profissional;
+    }
+    
     public String getNome() {
         return this.nome;
     }
