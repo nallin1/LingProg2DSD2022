@@ -19,10 +19,10 @@ public class AlunoController {
     public List<Aluno> buscarTodos(){
         return alunorep.findAll();
     }
-
+    /*
     @PostMapping ("/postAluno")
     public ResponseEntity<Aluno> inserirAluno(@RequestBody Aluno aluno) {
         return alunorep.save(aluno);
     }
-
+    */
 }
