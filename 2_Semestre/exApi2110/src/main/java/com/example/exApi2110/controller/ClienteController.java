@@ -38,4 +38,24 @@ public class ClienteController {
     public void inserirCliente(@RequestBody Cliente cliente) {
         clienteRep.save(cliente);
     }
+
+    @GetMapping("/buscarClienteNome/{nome}")
+    public List<Cliente> listarPorNome(@PathVariable(value = "nome") String nome) {
+        return clienteRep.findByNome(nome);
+    }
+
+    @GetMapping ("/buscarClienteIdadeMaior/{idade}")
+    public List<Cliente> listarPorIdadeMaior(@PathVariable(value = "idade") int idade) {
+        return clienteRep.findByMaiorIdade(idade);
+    }
+
+    @GetMapping("/buscarClienteTrechoContido/{trecho}")
+    public List<Cliente> listarPorTrechoContidoNome(@PathVariable(value = "trecho") String trecho) {
+        return clienteRep.findByTrechoContido(trecho);
+    }
+
+    @GetMapping ("/buscarClienteIdadeMaiorAndNomeTrecho/{trecho}")
+    public List<String> buscarClienteIdadeMaiorAndNomeTrecho(@PathVariable (value="trecho") String trecho, int idade) {
+        return clienteRep.findByIdadeMaiorAndNomeTrecho(idade, trecho);
+    }
 }
