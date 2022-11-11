@@ -1,20 +1,34 @@
 package com.example.projSem2.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ClienteProjSem")
 public class Cliente {
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
+
+    @Column
     private String nome;
+
+    @Column
     private String email;
 
     public Cliente() {
     }
-
 
     public Cliente(int codigo, String nome, String email) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
     }
-
 
     public int getCodigo() {
         return this.codigo;

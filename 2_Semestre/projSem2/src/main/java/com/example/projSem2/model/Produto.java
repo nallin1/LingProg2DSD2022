@@ -1,11 +1,28 @@
 package com.example.projSem2.model;
 
-public class Produto {
-    private int codigo;
-    private String descricao;
-    private String marca;
-    private int preco;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "ProdutoProjSem")
+public class Produto {
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int codigo;
+
+    @Column
+    private String descricao;
+
+    @Column
+    private String marca;
+
+    @Column
+    private int preco;
 
     public Produto() {
     }
