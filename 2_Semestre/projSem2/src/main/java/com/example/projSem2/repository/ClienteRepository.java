@@ -23,4 +23,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     @Query(value = "SELECT c FROM Cliente c where c.email like %?1%")
     Optional<Cliente> findByInicialEmail(String email);
 
+    @Query(value = "SELECT c FROM Cliente c where c.nome like %?1% and c.email like %?1%")
+    List<Cliente> findByInicialNomeEmail(String nome, String email);
+
 }

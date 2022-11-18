@@ -69,4 +69,11 @@ public class ClienteController {
 
     // busca de clientes com parte inicial do nome e parte inicial do e-mail
     // informados
+
+
+    // - busca de clientes com parte inicial do nome e parte inicial do e-mail informados
+    @GetMapping("/buscaInicialNomeEmail/{nome}/{email}")
+    public List<Cliente> buscaInicialNomeEmail(@PathVariable("nome") String nome, @PathVariable("email") String email) {
+        return clienteRepo.findByInicialNomeEmail(nome, email);
+    }
 }
